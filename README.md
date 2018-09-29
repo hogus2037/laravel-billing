@@ -1,9 +1,12 @@
 <h1 align="center"> laravel-billing </h1>
 
-<p align="center"> WechatPay AliPay.</p>
+<p align="center"> 依托于`omnipay`针对项目做数据结构控制</p>
 
+[![Build Status](https://travis-ci.org/hogus2037/laravel-billing.svg?branch=master)](https://travis-ci.org/hogus2037/laravel-billing)
 
 ## Installing
+
+在`composer.json`中添加`"symfony/event-dispatcher": "^2.8"`
 
 ```shell
 $ composer require hogus/laravel-billing -vvv

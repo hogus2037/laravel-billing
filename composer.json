@@ -16,7 +16,6 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "~5",
-        "symfony/event-dispatcher": "^2.8",
         "omnipay/common": "2.5.*",
         "lokielse/omnipay-wechatpay": "^1.0",
         "lokielse/omnipay-alipay": "^2.0"
