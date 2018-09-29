@@ -1,0 +1,34 @@
+{
+    "name": "hogus/laravel-billing",
+    "description": "WechatPay AliPay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hogus",
+            "email": "hogus2037@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hogus\\LaravelBilling\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5",
+        "symfony/event-dispatcher": "^2.8",
+        "omnipay/common": "2.5.*",
+        "lokielse/omnipay-wechatpay": "^1.0",
+        "lokielse/omnipay-alipay": "^2.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hogus\\LaravelBilling\\ServiceProvider"
+            ],
+            "aliases": {
+                "Billing": "Hogus\\LaravelBilling\\Facade\\Billing"
+            }
+        }
+    }
+}
