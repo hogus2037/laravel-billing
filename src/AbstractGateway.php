@@ -9,12 +9,10 @@
 namespace Hogus\LaravelBilling;
 
 use Hogus\LaravelBilling\Support\Config;
-use Hogus\LaravelBilling\Support\Data\NotifyData;
-use Hogus\LaravelBilling\Support\Data\WxData;
 use Omnipay\Common\Helper;
 use Omnipay\Omnipay;
 
-class AbstractGateway
+abstract class AbstractGateway implements BillingInterface
 {
     protected $config;
     protected $gateway;
@@ -87,18 +85,6 @@ class AbstractGateway
             $this->gateway = $this->getDefault();
         }
         return $this->gateway;
-    }
-
-    protected function formatOptions(array $options)
-    {
-        $class = new WxData($options);
-        return $class->toArray();
-    }
-
-    protected function notifyFormatOptions(array $options)
-    {
-        $class = new NotifyData($options);
-        return $class->toArray();
     }
 
     /**

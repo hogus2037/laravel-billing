@@ -1,4 +1,5 @@
 <?php
+
 namespace Hogus\LaravelBilling;
 
 /**
@@ -14,16 +15,9 @@ class Billing extends AbstractGateway
      * @param $channel
      * @return mixed
      */
-    public function charge(array $options, $channel = null)
+    public function charge($channel, array $options)
     {
-        if($channel) $this->gateway = $channel;
-
-        $data = $this->formatOptions($options);
-
-        $response = $this->gateway($channel)->purchase($data)->send();
-
-        return $response;
-
+        return $this->gateway($channel)->purchase($options)->send();
     }
 
     /**
@@ -32,41 +26,22 @@ class Billing extends AbstractGateway
      * @param $channel
      * @return mixed
      */
-    public function refund(array $options, $channel = null)
+    public function refund($channel, array $options)
     {
-        if($channel) $this->gateway = $channel;
-
-        $data = $this->formatOptions($options);
-
-        $response = $this->gateway($channel)->refund($data)->send();
-
-        return $response;
-
+        return $this->gateway($channel)->refund($options)->send();
     }
 
     /**
+     * 支付回调
      * @param $options
      * @param $channel
      * @return array|bool
      */
-    public function notify(array $options, $channel = null)
+    public function notify($channel, array $options)
     {
-        try {
-            $gateway = $this->gateway($channel);
-
-            $response = $gateway->completePurchase([
-                'request_params' => $options
-            ])->send();
-
-            if ($response->isPaid()) {
-                return $this->notifyFormatOptions($response->getRequestData());
-            }
-
-
-        } catch (\Exception $exception) {
-
-            return false;
-        }
+        return $this->gateway($channel)->completePurchase([
+            'request_params' => $options
+        ])->send();
 
     }
 
@@ -76,17 +51,64 @@ class Billing extends AbstractGateway
      * @param null $channel
      * @return mixed
      */
-    public function transfer(array $options, $channel = null)
+    public function transfer($channel, array $options)
     {
-        $gateway = $this->gateway($channel);
-
-        $data = $this->formatOptions($options);
-        $response = $gateway->transfer($data)->send();
-
-        return $response->getData();
-
+        return $this->gateway($channel)->transfer($options)->send();
     }
 
+    /**
+     * 订单查询
+     * @param $channel
+     * @param array $options
+     * @return mixed
+     */
+    public function query($channel, array $options)
+    {
+        return $this->gateway($channel)->query($options)->send();
+    }
 
+    /**
+     * 订单退款查询
+     * @param $channel
+     * @param array $options
+     * @return mixed
+     */
+    public function queryRefund($channel, array $options)
+    {
+        return $this->gateway($channel)->queryRefund($options)->send();
+    }
+
+    /**
+     * 关闭订单
+     * @param $channel
+     * @param array $options
+     * @return mixed
+     */
+    public function close($channel, array $options)
+    {
+        return $this->gateway($channel)->close($options)->send();
+    }
+
+    /**
+     * 确认企业付款
+     * @param $channel
+     * @param array $options
+     * @return mixed
+     */
+    public function queryTransfer($channel, array $options)
+    {
+        return $this->gateway($channel)->queryTransfer($options)->send();
+    }
+
+    /**
+     * 下载报表
+     * @param $channel
+     * @param array $options
+     * @return mixed
+     */
+    public function downloadBill($channel, array $options)
+    {
+        return $this->gateway($channel)->downloadBill($options)->send();
+    }
 
 }
