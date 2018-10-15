@@ -33,11 +33,11 @@ class Billing extends AbstractGateway
 
     /**
      * 支付回调
-     * @param $options
      * @param $channel
-     * @return array|bool
+     * @param array $options
+     * @return mixed
      */
-    public function notify($channel, array $options)
+    public function notify($channel, $options)
     {
         return $this->gateway($channel)->completePurchase([
             'request_params' => $options

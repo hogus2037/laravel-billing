@@ -8,7 +8,7 @@ interface BillingInterface
 
     public function refund($channel, array $options);
 
-    public function notify($channel, array $options);
+    public function notify($channel, $options);
 
     public function transfer($channel, array $options);
 
