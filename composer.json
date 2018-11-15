@@ -14,11 +14,11 @@
         }
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.6.0",
         "illuminate/support": "~5",
-        "omnipay/common": "2.5.*",
-        "lokielse/omnipay-wechatpay": "^1.0",
-        "lokielse/omnipay-alipay": "^2.0"
+        "omnipay/common": "3.0.*",
+        "lokielse/omnipay-wechatpay": "^3.0",
+        "lokielse/omnipay-alipay": "^3.0"
     },
     "extra": {
         "laravel": {
